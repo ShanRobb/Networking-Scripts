@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Variables
+today=$(date +"%m-%d-%Y") # Today's date
+ports=$(sudo ss -tunl) # Open ports
+dns_serv=$(cat /etc/resolv.conf | grep nameserver) # DNS server
+ipaddr=$(ip addr show) # IP address
+rout_info=$(ip route) # Routing table
+
+# New file to save network info
+new_file="networkinfo_$today.txt" # Text file
+
+# Displays network info
+echo "Network Information - $today:" # Heading
+echo "----------------------------" # Line separator
+echo "IP Address:"
+echo "$ipaddr" # Displays IP address info
+echo "DNS Servers:"
+echo "$dns_serv" # Displays DNS server info
+echo "Open Ports:"
+echo "$ports" # Displays info about open ports
+echo "Routing Info:"
+echo "$rout_info" # Displays routing info
+
+# Dumping network info
+echo "Network Information - $today:" >> $new_file # Appends heading to the new file
+echo "----------------------------" >> $new_file # Appends line separator to the new file
+echo "IP Address:" >> $new_file
+echo "$ipaddr" >> $new_file # Appends IP address info to the new file
+echo "DNS Servers:" >> $new_file
+echo "$dns_serv" >> $new_file # Appends DNS server info to the new file
+echo "Open Ports:" >> $new_file
+echo "$ports" >> $new_file # Appends port info to the new file
+echo "Routing Info:" >> $new_file
+echo "$rout_info" >> $new_file # Appends routing info to the new file
